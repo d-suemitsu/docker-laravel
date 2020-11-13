@@ -31,4 +31,4 @@ Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name
 Route::get('/user', fn() => Auth::user())->name('user');
 
 // 写真投稿
-Route::post('/photos', 'PhotoController@create')->name('photo.create');
+Route::post('/photos', 'App\Http\Controllers\PhotoController@create')->name('photo.create');
