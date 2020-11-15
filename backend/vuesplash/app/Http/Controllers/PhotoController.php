@@ -7,6 +7,7 @@ use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -32,6 +33,8 @@ class PhotoController extends Controller
         // インスタンス生成時に割り振られたランダムなID値と
         // 本来の拡張子を組み合わせてファイル名とする
         $photo->filename = $photo->id . '.' . $extension;
+
+        Log::debug('デバッグ アップロードファイル名:'.$photo->filename);
 
         // S3にファイルを保存する
         // 第三引数の'public'はファイルを公開状態で保存するため
