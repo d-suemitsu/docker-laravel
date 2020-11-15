@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
+
+    use HasFactory;
+
     /** プライマリキーの型 */
     protected $keyType = 'string';
 
@@ -51,4 +56,38 @@ class Photo extends Model
 
         return $id;
     }
+
+    /**
+     * リレーションシップ - usersテーブル
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id', 'users');
+    }
+
+    /**
+     * アクセサ - url
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        return Storage::cloud()->url($this->attributes['filename']);
+    }
+
+    /** JSONに含める属性 */
+    protected $appends = [
+        'url',
+    ];
+
+    /** JSONに含めない属性 */
+//    protected $hidden = [
+//        'user_id', 'filename',
+//        self::CREATED_AT, self::UPDATED_AT,
+//    ];
+
+    /** JSONに含める属性 */
+    protected $visible = [
+        'id', 'owner', 'url',
+    ];
 }
