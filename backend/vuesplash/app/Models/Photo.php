@@ -90,4 +90,6 @@ class Photo extends Model
     protected $visible = [
         'id', 'owner', 'url',
     ];
+
+    protected $perPage = 2;
 }
