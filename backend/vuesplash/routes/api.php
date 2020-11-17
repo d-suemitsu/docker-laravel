@@ -36,3 +36,6 @@ Route::post('/photos', 'App\Http\Controllers\PhotoController@create')->name('pho
 // 写真一覧
 Route::get('/photos', 'App\Http\Controllers\PhotoController@index')->name('photo.index');
 
+// 写真詳細
+Route::get('/photos/{id}', 'App\Http\Controllers\PhotoController@show')->name('photo.show');
+
