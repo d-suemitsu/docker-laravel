@@ -39,3 +39,6 @@ Route::get('/photos', 'App\Http\Controllers\PhotoController@index')->name('photo
 // 写真詳細
 Route::get('/photos/{id}', 'App\Http\Controllers\PhotoController@show')->name('photo.show');
 
+// コメント
+Route::post('/photos/{photo}/comments', 'App\Http\Controllers\PhotoController@addComment')->name('photo.comment');
+
