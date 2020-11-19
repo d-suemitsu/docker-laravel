@@ -42,3 +42,8 @@ Route::get('/photos/{id}', 'App\Http\Controllers\PhotoController@show')->name('p
 // コメント
 Route::post('/photos/{photo}/comments', 'App\Http\Controllers\PhotoController@addComment')->name('photo.comment');
 
+// いいね
+Route::put('/photos/{id}/like', 'App\Http\Controllers\PhotoController@like')->name('photo.like');
+
+// いいね解除
+Route::delete('/photos/{id}/like', 'App\Http\Controllers\PhotoController@unlike');
